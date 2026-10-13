@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIM × KUFOS: Hierarchy and Decision Flow</title>
+<meta name="description" content="Interactive comparison of the organizational structure, decision-making and change response of AIM (private) and KUFOS (government).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#structure">AIM × KUFOS</a>
+  <nav id="tabs" role="tablist" aria-label="Boards">
+    <button role="tab" data-tab="structure">1 Structure</button>
+    <button role="tab" data-tab="decisions">2 Decisions</button>
+    <button role="tab" data-tab="change">3 Change</button>
+  </nav>
+  <div class="tray" aria-hidden="true"><span id="clock"></span></div>
+</header>
+
+<section class="hero">
+  <h1>Who reports to whom.<br>Who signs off on what.</h1>
+  <p class="lede">Two institutions in the same education industry: Albertian Institute of Management (AIM, private) and Kerala University of Fisheries and Ocean Studies (KUFOS, government). Explore how each is organized, how a big decision travels through it, and how each reacted to the four-year undergraduate policy.</p>
+  <ol class="guide">
+    <li><b>Read the hierarchy.</b> Board 1 draws each institution top to bottom.</li>
+    <li><b>Trace a reporting line.</b> Click any box to light up its chain of command.</li>
+    <li><b>Follow a decision.</b> Board 2 runs a proposal through every approval stage.</li>
+  </ol>
+</section>
+
+<main>
+
+<!-- BOARD 1 -->
+<section class="board" id="structure" role="tabpanel" aria-labelledby="Structure">
+  <h2 class="bh"><span>Board 1</span> Organizational structure</h2>
+<div class="body">
+  <div class="controls">
+    <button class="btn y" id="replay">Replay</button>
+    <button class="btn" id="expand">Expand all</button>
+    <button class="btn" id="collapse">Collapse branches</button>
+    <label class="slider">Show levels 0 to <output id="lvlout">9</output>
+      <input type="range" id="lvl" min="0" max="9" value="9" aria-label="Maximum level shown">
+    </label>
+  </div>
+  <p class="hint">Click a box to trace its reporting line. Use the − button to fold a branch. Boxes marked i carry extra detail when selected.</p>
+
+  <div class="cols">
+    <article class="panel aim">
+      <header class="ph"><h3>AIM</h3><p>Private institution, management education</p></header>
+      <div class="line" id="line-aim" aria-live="polite"><p class="empty">Select a box to see who sits above it.</p></div>
+      <ul class="tree" id="tree-aim"></ul>
+    </article>
+    <article class="panel kuf">
+      <header class="ph"><h3>KUFOS</h3><p>Government institution, Multidisciplinary: fisheries, ocean and management</p></header>
+      <div class="line" id="line-kuf" aria-live="polite"><p class="empty">Select a box to see who sits above it.</p></div>
+      <ul class="tree" id="tree-kuf"></ul>
+    </article>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>AIM has a trust-based, relatively compact structure with centralized leadership.</li>
+      <li>KUFOS follows a statutory university structure with multiple governance layers.</li>
+      <li>Both have defined academic and administrative units, but the reporting relationships differ.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- BOARD 2 -->
+<section class="board" id="decisions" role="tabpanel">
+  <h2 class="bh"><span>Board 2</span> Decision-making and organizational design</h2>
+<div class="body">
+  <p class="hint">Example decision: creating a new department or course. Step through it, or let both institutions run at once.</p>
+  <div class="controls">
+    <button class="btn" id="prev">Back</button>
+    <button class="btn y" id="next">Next step</button>
+    <button class="btn" id="together">Play together</button>
+    <button class="btn" id="race">Race</button>
+    <button class="btn" id="reset2">Reset</button>
+  </div>
+
+  <div class="track" aria-hidden="true">
+    <div class="lane aim"><span>AIM</span><div class="segs" id="seg-aim"></div></div>
+    <div class="lane kuf"><span>KUFOS</span><div class="segs" id="seg-kuf"></div></div>
+  </div>
+  <p class="status" id="status" aria-live="polite">Ready. Press Next step to start the proposal.</p>
+
+  <div class="cols">
+    <article class="panel aim">
+      <header class="ph"><h3>AIM</h3><p>Private, trust-based, New department or course</p></header>
+      <ol class="flow" id="flow-aim"></ol>
+    </article>
+    <article class="panel kuf">
+      <header class="ph"><h3>KUFOS</h3><p>Government, statutory, Curriculum change or new course</p></header>
+      <ol class="flow" id="flow-kuf"></ol>
+    </article>
+  </div>
+  <p class="note">Race mode uses illustrative pacing (AIM is drawn faster because it has fewer layers). It is a visual aid, not measured data.</p>
+
+  <h3 class="sub">Comparison of decision-making processes</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Aspect</th><th class="a">AIM</th><th class="k">KUFOS</th></tr></thead>
+      <tbody id="cmp"></tbody>
+    </table>
+  </div>
+
+  <div class="takeaways">
+    <h3>Analysis</h3>
+    <ul>
+      <li>Both institutions have defined approval processes for structural and academic changes.</li>
+      <li>AIM is more committee and management driven, with Trust and university approval.</li>
+      <li>KUFOS runs a multi-layered, formal process through university statutory bodies.</li>
+      <li>The difference reflects organizational design, governance system and external accountability.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- BOARD 3 -->
+<section class="board" id="change" role="tabpanel">
+  <h2 class="bh"><span>Board 3</span> Organizational change in response to environment</h2>
+<div class="body">
+  <p class="hint">Impact of the four-year undergraduate policy.</p>
+
+  <div class="ext">
+    <h3>External environmental change</h3>
+    <p>Four-year undergraduate programmes (NEP 2020 and the 2024 policy framework)</p>
+  </div>
+  <div class="split" aria-hidden="true"><i></i><i></i></div>
+
+  <div class="controls">
+    <button class="btn y" id="cnext">Next step</button>
+    <button class="btn" id="cplay">Play</button>
+    <button class="btn" id="creset">Reset</button>
+  </div>
+
+  <div class="cols">
+    <article class="panel aim">
+      <header class="ph"><h3>AIM</h3><p>Key challenge</p></header>
+      <ol class="flow chain" id="chain-aim"></ol>
+    </article>
+    <article class="panel kuf">
+      <header class="ph"><h3>KUFOS</h3><p>Response and adaptation</p></header>
+      <ol class="flow chain" id="chain-kuf"></ol>
+    </article>
+  </div>
+
+  <div class="cols two">
+    <div class="takeaways">
+      <h3>Organizational design perspective</h3>
+      <ul>
+        <li>A common external change creates different strategic responses.</li>
+        <li>AIM faces a potential threat to PG admissions, requiring review of its future academic and market strategy.</li>
+        <li>KUFOS adapts through program redesign and integrated courses, in line with its long-term mission and environment.</li>
+      </ul>
+    </div>
+    <div class="takeaways">
+      <h3>Conclusion</h3>
+      <ul>
+        <li>Organizational structure influences how institutions respond to environmental changes.</li>
+        <li>AIM and KUFOS operate in the same industry but have different governance systems, decision-making processes and strategic responses.</li>
+        <li>Organizational design has to align with a changing environment, strategy and organizational change.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+  <p>Built from the three-board infographic on organizational structure, decision-making and change.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
